@@ -59,7 +59,7 @@ return {
     },
     config = function ()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "ocamllsp", "texlab" }
+        ensure_installed = { "pylsp", "lua_ls", "ocamllsp", "texlab", "marksman" }
       })
     end
   },
@@ -74,7 +74,22 @@ return {
     lazy = false,
     opts = {
       bigfile = { enabled = true },
-      dashboard = { enabled = true },
+      dashboard = {
+        enabled = true,
+        preset = {
+          ---@type snacks.dashboard.Item[]
+          keys = {
+            { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
+            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "c", desc = "Config", action = ":lua require('telescope.builtin').find_files({ cwd = '~/.config/nvim/' })"},
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+      },
       indent = { enabled = true },
       input = { enabled = true },
       picker = { enabled = true },
@@ -91,6 +106,34 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
-  }
+  },
+  {
+    'rebelot/terminal.nvim',
+    config = function()
+        require("terminal").setup()
+    end
+  },
+  {
+    'akinsho/toggleterm.nvim', version = "*", config = true
+  },
+  {
+    'pocco81/auto-save.nvim'
+  },
+  {
+    "lervag/vimtex",
+    lazy = false,
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+    end
+  },
+  {
+  "iamcco/markdown-preview.nvim",
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  build = "cd app && npm install",
+  init = function()
+    vim.g.mkdp_filetypes = { "markdown" }
+  end,
+  ft = { "markdown" },
+},
 }
 
