@@ -8,5 +8,5 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Leader key settings
-vim.g.mapleader = ";"
+vim.g.mapleader = "."
 vim.g.maplocalleader = ","

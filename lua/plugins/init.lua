@@ -58,9 +58,7 @@ return {
         "neovim/nvim-lspconfig",
     },
     config = function ()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "pylsp", "lua_ls", "ocamllsp", "texlab", "marksman" }
-      })
+      require("mason-lspconfig").setup({})
     end
   },
   {
@@ -127,13 +125,18 @@ return {
     end
   },
   {
-  "iamcco/markdown-preview.nvim",
-  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-  build = "cd app && npm install",
-  init = function()
-    vim.g.mkdp_filetypes = { "markdown" }
-  end,
-  ft = { "markdown" },
-},
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+  {
+    "lommix/godot.nvim",
+    lazy = true,
+    cmd = { "GodotDebug", "GodotBreakAtCursor", "GodotStep", "GodotQuit", "GodotContinue" },
+  },
 }
 
