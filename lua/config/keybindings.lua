@@ -20,7 +20,7 @@ function term_toggle()
   term:toggle()
 end
 
-vim.keymap.set({"n", "v", "t"}, "<leader>,", term_toggle, {})
+vim.keymap.set({"n", "v", "t"}, "<localleader>m", term_toggle, {})
 vim.keymap.set({'n', 't'}, '<Esc>', [[<C-\><C-n>]], { noremap = true })
 vim.keymap.set({'n', 't'}, '<C-h>', [[<C-\><C-n><C-w>h]], { noremap = true })
 vim.keymap.set({'n', 't'}, '<C-j>', [[<C-\><C-n><C-w>j]], { noremap = true })
